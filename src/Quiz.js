@@ -39,16 +39,25 @@ class Quiz extends Component {
         let score = this.state.score
         if (q.target.innerText === currentAnswer) {
            score++
-        }else {
-            q.target.className = this.state.incorrect
-
-        }
-        this.setState({
+        //    q.target.className = 'answer-button__correct'
+           this.setState({
             score: score,
             disabled: true,
             correct: 'answer-button__correct', 
             defaultClass: ''
         })
+        }else {
+            this.setState({
+             
+                incorrect: 'answer-button__incorrect', 
+                defaultClass: '',
+                disabled: true,
+                score: score,
+                correct: 'answer-button__correct'
+            })
+        }
+
+       
    
       }
       
@@ -61,7 +70,7 @@ class Quiz extends Component {
     }
     
     render() {
-        const {questions, index } = this.state
+        const {questions, index, correct, incorrect } = this.state
         const currentQuestion = questions[index]
         
         return (
@@ -80,7 +89,13 @@ class Quiz extends Component {
                 <div className="answers-button">
                 {
                     currentQuestion.answers.map((q, i) => (
-                    <button disabled={this.state.disabled} ref="btn" key={i} id={"answer"+i} className={this.state.correct+i + " answer-button__default " } onClick={ (event) => this.checkAnswer(event)}>{q}</button>
+                    <button 
+                        disabled={this.state.disabled} 
+                        ref="btn" key={i} id={"answer"+i} 
+                        className={`${ q ===  currentQuestion.correct_answer ? correct : incorrect } answer-button__default`} 
+                        onClick={ (event) => this.checkAnswer(event)}>
+                            {q}
+                        </button>
                     ))
                 }
                 </div>

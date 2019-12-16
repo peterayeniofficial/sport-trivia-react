@@ -170,15 +170,7 @@ background: #5630B7;
 border: 2px solid #5630B7;
 }
 
-.answer-button__default:disabled {
-  outline: 1px solid rgba(102, 100, 107, 0.829);
-  outline-offset: -4px;
-}
 
-.answer-button__default:disabled {
-  background: rgba(102, 100, 107, 0.829);
-  border: 2px solid rgba(102, 100, 107, 0.829);
-}
 
 .answer-button__correct {
   width: 48%;

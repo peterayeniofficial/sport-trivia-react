@@ -46,7 +46,8 @@ class Quiz extends Component {
         this.setState({
             score: score,
             disabled: true,
-            correct: 'answer-button__correct'
+            correct: 'answer-button__correct', 
+            defaultClass: ''
         })
    
       }
@@ -79,7 +80,7 @@ class Quiz extends Component {
                 <div className="answers-button">
                 {
                     currentQuestion.answers.map((q, i) => (
-                    <button disabled={this.state.disabled} ref="btn" key={i} id={"answer"} className={this.state.correct + " answer-button__default " } onClick={ (event) => this.checkAnswer(event)}>{q}</button>
+                    <button disabled={this.state.disabled} ref="btn" key={i} id={"answer"+i} className={this.state.correct+i + " answer-button__default " } onClick={ (event) => this.checkAnswer(event)}>{q}</button>
                     ))
                 }
                 </div>

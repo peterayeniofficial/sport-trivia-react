@@ -7,7 +7,7 @@ import {
 import './App.css';
 import Start from './Start';
 import Quiz from './Quiz';
-import Finish from './Finish';
+// import Finish from './Finish';
 class App extends Component {
  
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
       <Switch>
         <Route path ="/" exact component={Start}/>
         <Route path ="/quiz" component={Quiz}/>
-        <Route path ="/finish" exact component={Finish}/>
+        {/* <Route path ="/finish" exact component={Finish}/> */}
       </Switch>
     </Router>
     );

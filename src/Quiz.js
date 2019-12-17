@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { questions } from './Questions';
+import Finish from './Finish';
+import ReactCountdownClock from 'react-countdown-clock';
 
 class Quiz extends Component {
     btn = React.createRef();
@@ -10,7 +12,9 @@ class Quiz extends Component {
         defaultClass: 'answer-button__default',
         disabled: false,
         correct: '',
-        incorrect: ''
+        incorrect: '',
+        finish: false,
+        time: 60
       };
 
       nextQuestion(e)  {
@@ -25,21 +29,22 @@ class Quiz extends Component {
               defaultClass: this.state.defaultClass,
               correct: '',
               incorrect: ''
+             
 
           })
       }
 
+      finish() {
+          this.setState({
+              finish: true
+          })
+      }
+
       checkAnswer(q) {
-        console.log(q)
-        
-       
-    
         let currentAnswer = this.state.questions[this.state.index].correct_answer
-        console.log('current Ans:', currentAnswer)
         let score = this.state.score
         if (q.target.innerText === currentAnswer) {
            score++
-        //    q.target.className = 'answer-button__correct'
            this.setState({
             score: score,
             disabled: true,
@@ -57,52 +62,64 @@ class Quiz extends Component {
             })
         }
 
-       
-   
       }
       
       renderButton() {
         if (this.state.index < this.state.questions.length - 1) {
             return <button className="next-button" onClick={ event => this.nextQuestion()} >Next</button>
         }else {
-            return <button className="next-button">Finish</button>
+            return <button onClick={ event => this.finish()} className="next-button">Finish</button>
         }
     }
-    
+
+
     render() {
-        const {questions, index, correct, incorrect } = this.state
+        const {questions, index, correct, incorrect, finish, score, time } = this.state
         const currentQuestion = questions[index]
         
-        return (
-            <div className="quiz-page">
-            <div className="quiz-content">
-                <div className="question-meta">
-                    <div className="time-container"><h3>30</h3></div>
-                    <div className="progress-container">
-                        <p>Question: {index + 1} of {questions.length}</p>
-                        <progress value={index + 1} max={questions.length} className="progress"></progress>
+        if (finish === false) {
+            return (
+                <div className="quiz-page">
+                <div className="quiz-content">
+                    <div className="question-meta">
+                        <div className="time-container">
+                            <h3>
+                            <ReactCountdownClock seconds={time}
+                                color="#000"
+                                alpha={0.9}
+                                size={80}
+                                onComplete={() => this.finish()}
+                                />
+                            </h3>
+                            </div>
+                        <div className="progress-container">
+                            <p>Question: {index + 1} of {questions.length}</p>
+                            <progress value={index + 1} max={questions.length} className="progress"></progress>
+                        </div>
                     </div>
+                    <div className="display-content">
+                        <p>{currentQuestion.question}</p>
+                    </div>
+                    <div className="answers-button">
+                    {
+                        currentQuestion.answers.map((q, i) => (
+                        <button 
+                            disabled={this.state.disabled} 
+                            ref="btn" key={i} id={"answer"+i} 
+                            className={`${ q ===  currentQuestion.correct_answer ? correct : incorrect } answer-button__default`} 
+                            onClick={ (event) => this.checkAnswer(event)}>
+                                {q}
+                            </button>
+                        ))
+                    }
+                    </div>
+                    {this.renderButton()}
                 </div>
-                <div className="display-content">
-                    <p>{currentQuestion.question}</p>
-                </div>
-                <div className="answers-button">
-                {
-                    currentQuestion.answers.map((q, i) => (
-                    <button 
-                        disabled={this.state.disabled} 
-                        ref="btn" key={i} id={"answer"+i} 
-                        className={`${ q ===  currentQuestion.correct_answer ? correct : incorrect } answer-button__default`} 
-                        onClick={ (event) => this.checkAnswer(event)}>
-                            {q}
-                        </button>
-                    ))
-                }
-                </div>
-                {this.renderButton()}
             </div>
-        </div>
-        );
+            );
+        }else {
+            return <Finish score={score} questions={questions} />
+        }
     }
 }
 

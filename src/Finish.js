@@ -5,8 +5,9 @@ function Finish(props) {
    
     return (
         <div className="finish-page">
-            <div className="content-finish content__finish-page">
-            <p>{props.score}/{props.questions.length}</p>
+            <div className="content-finish content__finish-page animated slideInRight">
+            <p className="score">{props.score}/{props.questions.length} <br/> <span>Your Score</span></p>
+            
                 <Link  to='/' className="start-button">Play Again</Link>
             </div>
         </div>

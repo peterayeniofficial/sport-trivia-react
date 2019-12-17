@@ -8,7 +8,7 @@
 background-image: url('./finish-bg.png');
 width: 100%;
 height: 100vh;
-background-size: contain;
+background-size: cover;
 background-repeat: no-repeat;
 background-color: #8065FF;
 }
@@ -39,15 +39,20 @@ display: flex;
 flex-direction: column;
 }
 
-.content-finish p{
+.score{
 text-align: center;
 color: aliceblue;
-font-weight: 300;
-font-size: 200px;
-margin-top: 30%;
+font-weight: 900;
+font-size: 50px;
+margin-top: 50%;
+
 
 }
 
+.content-finish p span {
+  font-size: 20px;
+  margin-top: 0px;
+}
 
 
 .start-button{
@@ -263,4 +268,46 @@ padding-top: 15px;
 
 .display-none {
 display: none;
+}
+
+@media only screen and (max-width: 768px)  {
+  .start-button{
+    font-size: 20px;
+    font-weight: 900;
+ 
+    
+    }
+
+    .content img {
+      width: 100%;
+      margin-top: 50%;
+      }
+      
+      .content p {
+      font-weight: 300;
+      font-size: medium;
+    }
+
+    .quiz-content {
+      width: 80%;
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .answer-button__default {
+      width: 100%;
+      
+      }
+
+      .content-finish p {
+        text-align: center;
+        color: aliceblue;
+        font-weight: 300;
+        font-size: 50px;
+        margin-top: 50%;
+        
+        }
 }

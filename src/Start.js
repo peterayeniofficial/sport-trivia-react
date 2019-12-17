@@ -6,9 +6,9 @@ function Start(props) {
     return (
         <div className="start-page">
             <div className='content'>
-                <img src={mainImage} alt="Sport Fans"/>
-                <p>Sport Fan? <br/>Test how much you know.</p>
-                <Link to="/quiz" className="start-button">Start Trivia</Link>
+                <img className="animated bounceInUp" src={mainImage} alt="Sport Fans"/>
+                <p className="animated bounceInLeft" >Sport Fan? <br/>Test how much you know. <br/> <strong>10 Questions in 60 Seconds!</strong></p>
+                <Link to="/quiz" className="animated bounceInRight start-button">Start Trivia</Link>
             </div>
         </div>
     );

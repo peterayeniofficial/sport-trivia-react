@@ -80,12 +80,12 @@ class Quiz extends Component {
         if (finish === false) {
             return (
                 <div className="quiz-page">
-                <div className="quiz-content">
-                    <div className="question-meta">
+                <div className="quiz-content animated fadeIn">
+                    <div className="question-meta animated slideInRight">
                         <div className="time-container">
                             <h3>
                             <ReactCountdownClock seconds={time}
-                                color="#000"
+                                color="#23D9B7"
                                 alpha={0.9}
                                 size={80}
                                 onComplete={() => this.finish()}
@@ -97,7 +97,7 @@ class Quiz extends Component {
                             <progress value={index + 1} max={questions.length} className="progress"></progress>
                         </div>
                     </div>
-                    <div className="display-content">
+                    <div className="display-content animated slideInLeft">
                         <p>{currentQuestion.question}</p>
                     </div>
                     <div className="answers-button">
@@ -106,7 +106,7 @@ class Quiz extends Component {
                         <button 
                             disabled={this.state.disabled} 
                             ref="btn" key={i} id={"answer"+i} 
-                            className={`${ q ===  currentQuestion.correct_answer ? correct : incorrect } answer-button__default`} 
+                            className={`${ q ===  currentQuestion.correct_answer ? correct : incorrect } answer-button__default animated slideInRight`} 
                             onClick={ (event) => this.checkAnswer(event)}>
                                 {q}
                             </button>

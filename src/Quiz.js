@@ -87,7 +87,7 @@ class Quiz extends Component {
                             <ReactCountdownClock seconds={time}
                                 color="#23D9B7"
                                 alpha={0.9}
-                                size={80}
+                                size={60}
                                 onComplete={() => this.finish()}
                                 />
                             </h3>
@@ -98,7 +98,7 @@ class Quiz extends Component {
                         </div>
                     </div>
                     <div className="display-content animated slideInLeft">
-                        <p>{currentQuestion.question}</p>
+                        <h3>{currentQuestion.question}</h3>
                     </div>
                     <div className="answers-button">
                     {
